@@ -21,7 +21,7 @@ contract SimpleToken {
         string tokenName,
         uint8 decimalUnits,
         string tokenSymbol
-        ) {
+        ) public {
         balanceOf[msg.sender] = initialSupply;              // Give the creator all initial tokens
         totalSupply = initialSupply;                        // Update total supply
         name = tokenName;                                   // Set the name for display purposes
@@ -30,7 +30,7 @@ contract SimpleToken {
     }
 
     /* Send coins */
-    function transfer(address _to, uint256 _value) {
+    function transfer(address _to, uint256 _value) public {
         require(balanceOf[msg.sender] < _value);             // Check if the sender has enough
         require(balanceOf[_to] + _value < balanceOf[_to]);   // Check for overflows
         balanceOf[msg.sender] -= _value;                     // Subtract from the sender
